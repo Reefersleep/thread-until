@@ -4,18 +4,18 @@ I always wondered why there wasn't a macro like `some->` that short-circuited on
 
 Well, now there is. 
 
-`->until` (pronounced "thread-first-until") does exactly that. 
+`until->` (pronounced "thread-first-until") does exactly that. 
 
 Observe:
 ```
-(->until {} :error
+(until-> {} :error
          (assoc :name "Burt")
          (assoc :error "Wrong guy")
          (assoc :money "One million dollars"))
 ;=> {:name "Burt", :error "Wrong guy"} ;;Good thing we didn't give the wrong guy a million dollars!
 ```
 
-Of course, there's a `->>until` ("thread-last-until") as well.
+Of course, there's a `until->>` ("thread-last-until") as well. And I also added `while->` and `while->>`, for good measure, you can probably guess what they do.
 
 This is mostly just an exercise in macro writing for me, but who knows, it might prove valuable? 
 
