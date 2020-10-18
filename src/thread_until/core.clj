@@ -4,7 +4,7 @@
   "Threads initial-val through forms like ->.
   Stops evaluating forms, like some->, once
   (predicate-fn threaded-value) returns truthy."
-  [inital-val predicate-fn & forms]
+  [initial-val predicate-fn & forms]
   (let [predicated-forms (map (fn [form#]
                                 `((fn [[y# done?#]]
                                     (if (or done?#          ;;This prevents redundant evaluations of predicate-fn.
@@ -12,7 +12,7 @@
                                       [y# true]
                                       [(-> y# ~form#) nil]))))
                               forms)]
-    `(-> [~inital-val nil]
+    `(-> [~initial-val nil]
          ~@predicated-forms
          first)))
 
@@ -20,7 +20,7 @@
   "Threads initial-val through forms like ->>.
   Stops evaluating forms, like some->>, once
   (predicate-fn threaded-value) returns truthy."
-  [inital-val predicate-fn & forms]
+  [initial-val predicate-fn & forms]
   (let [predicated-forms (map (fn [form#]
                                 `((fn [[y# done?#]]
                                     (if (or done?#          ;;This prevents redundant evaluations of predicate-fn.
@@ -28,7 +28,7 @@
                                       [y# true]
                                       [(->> y# ~form#) nil]))))
                               forms)]
-    `(-> [~inital-val nil]
+    `(-> [~initial-val nil]
          ~@predicated-forms
          first)))
 
@@ -36,7 +36,7 @@
   "Threads initial-val through forms like ->.
   Stops evaluating forms, like some->, once
   (predicate-fn threaded-value) returns falsy."
-  [inital-val predicate-fn & forms]
+  [initial-val predicate-fn & forms]
   (let [predicated-forms (map (fn [form#]
                                 `((fn [[y# keep-going?#]]
                                     (if (and keep-going?# ;;This prevents redundant evaluations of predicate-fn.
@@ -44,7 +44,7 @@
                                       [(-> y# ~form#) true]
                                       [y# nil]))))
                               forms)]
-    `(-> [~inital-val true]
+    `(-> [~initial-val true]
          ~@predicated-forms
          first)))
 
@@ -52,7 +52,7 @@
   "Threads initial-val through forms like ->>.
   Stops evaluating forms, like some->>, once
   (predicate-fn threaded-value) returns falsy."
-  [inital-val predicate-fn & forms]
+  [initial-val predicate-fn & forms]
   (let [predicated-forms (map (fn [form#]
                                 `((fn [[y# keep-going?#]]
                                     (if (and keep-going?# ;;This prevents redundant evaluations of predicate-fn.
@@ -60,6 +60,6 @@
                                       [(->> y# ~form#) true]
                                       [y# nil]))))
                               forms)]
-    `(-> [~inital-val true]
+    `(-> [~initial-val true]
          ~@predicated-forms
          first)))

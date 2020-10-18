@@ -15,8 +15,21 @@ Observe:
 ;=> {:name "Burt", :error "Wrong guy"} ;;Good thing we didn't give the wrong guy a million dollars!
 ```
 
-Of course, there's a `until->>` ("thread-last-until") as well. And I also added `while->` and `while->>`, for good measure, you can probably guess what they do.
+Of course, there's a `until->>` ("thread-last-until") as well. 
 
-This is mostly just an exercise in macro writing for me, but who knows, it might prove valuable? 
+I also added `while->` and `while->>`, for good measure, you can probably guess what they do.
+Here's an example, anyway;
+```
+(let [withdraw! (fn [account amount]
+                  (update account :credit - amount))]
+  (while-> {:name   "John"
+            :credit 600} (comp #(>= % 500) :credit)
+           (withdraw! 100)
+           (withdraw! 100)
+           (withdraw! 400)  ;;Too bad John, gotta save some credit! 200 is all you get.
+           (withdraw! 1000))) 
+;=> {:name "John", :credit 400}
+```
 
-Check the tests to see example usage. 
+
+Check the tests to more examples. 
