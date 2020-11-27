@@ -1,5 +1,6 @@
 (ns thread-until.thread-first-while-test
-  (:require [clojure.test :refer :all]
+  (:require [#?@(:clj [clojure.test :refer]
+                 :cljs [cljs.test :refer-macros]) [deftest testing is]]
             [thread-until.core :refer [while->]]))
 
 (deftest while-test

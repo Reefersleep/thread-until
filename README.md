@@ -33,3 +33,14 @@ Here's an example, anyway;
 
 
 Check the tests to more examples. 
+
+To run the tests in Clojure:
+
+```
+clj -M:runner
+```
+
+And in ClojureScript:
+```
+clj -M:cljs-runner
+```

@@ -1,5 +1,6 @@
 (ns thread-until.thread-last-until-test
-  (:require [clojure.test :refer :all]
+  (:require [#?@(:clj [clojure.test :refer]
+                 :cljs [cljs.test :refer-macros]) [deftest testing is]]
             [thread-until.core :refer [until->>]]))
 
 (deftest anonymous-fn-test
