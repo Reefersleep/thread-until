@@ -13,3 +13,7 @@ pom.xml.asc
 *.iml
 *.~undo-tree~
 .idea*
+cljs-test-runner-out*
+.clj-kondo*
+.cpcache*
+.lsp*

@@ -1,5 +1,11 @@
 # thread-until
 
+### Dependency info
+
+https://clojars.org/com.github.reefersleep/thread-until
+
+### What, why
+
 I always wondered why there wasn't a macro like `some->` that short-circuited once an arbitrary predicate function returned a truthy val.
 
 Well, now there is. 
@@ -34,6 +40,8 @@ Here's an example, anyway;
 
 Check the tests to more examples. 
 
+Inspired in part by thoughts such as these: https://medium.com/appsflyerengineering/railway-oriented-programming-clojure-and-exception-handling-why-and-how-89d75cc94c58
+
 To run the tests in Clojure:
 
 ```
@@ -43,4 +51,16 @@ clj -M:runner
 And in ClojureScript:
 ```
 clj -M:cljs-runner
+```
+
+### Library developer's notes
+
+To build jar:
+```
+clj -T:build ci
+```
+
+To deploy to clojars:
+```
+env CLOJARS_USERNAME=reefersleep CLOJARS_PASSWORD=clojars_token clj -T:build deploy
 ```
